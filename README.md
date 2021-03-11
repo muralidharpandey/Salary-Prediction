@@ -24,7 +24,6 @@ The goal of this project is to examine a set of job postings with salaries and t
 
 The possible use-case for this project is for the websites showing job postings to give a better estimate of the salaries and to give job seekers an idea about the salaries based on their credentials. Also, this model can be used by HR teams to offer competetive salary to hire and retain employees. 
 
-> NOTE: The dataset for the project is pretty much modelling ready and there is a very little scope of data cleaning and feature engineering (in my opinion). That is why, I took the full opportunity to do a lot of experimentation regarding automating the code as possible and to write clean and modular code (tried to avoid hard-coding values). 
 ## Data Exploration (DISCOVER)
 ### First Glance at the Data
 Following datasets are provided for this project in the CSV format:
