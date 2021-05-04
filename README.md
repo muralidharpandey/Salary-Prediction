@@ -72,20 +72,20 @@ We will explore the numeric features now.
 
 __2. `yearsExperience`__
 
-![yearsExp](assets/years_exp.png)
+![yearsExp](images/years_exp.png)
 Apart from relatively small fluctuations, data is almost evenly distributed between the unique values of the `yearsExperience`. There are only 25 unique integer values for this feature, meaning, it might as well be considered as an ordinal categorical variable. We kept it as a numeric variable though since there is a non-zero positive correlation between `salary` and `yearsExperience` as shown by the right plot above.
 
 
 __3. `milesFromMetropolis`__
 
-![miles](assets/miles_from_metropolis.png)
+![miles](images/miles_from_metropolis.png)
 Again, we can clearly see that data is pretty much evenly distributed between all the values of `milesFromMetropolis`. Interestingly the salaries decrease as we move farther from the big cities. This might be due to the fact that bigger cities have higher cost of living so the companies there pay you more.
 
 We will continue our analysis with the categorical features now.
 
 __4. `degree`__
 
-![degree](assets/degree.png)
+![degree](images/degree.png)
 The corresponding data table for the target variable for the unique values for this feature looks like:
 | degree | mean | count |
 | :---: | :---: | :---: |
@@ -99,7 +99,7 @@ We can easily infer that advanced degrees like Ph.D. and masters indeed help in 
 
 __5. `jobType`__
 
-![jobtype](assets/job_type.png)
+![jobtype](images/job_type.png)
 Data table:
 | jobType | mean | count |
 | :---: | :---: | :---: |
@@ -116,7 +116,7 @@ There is a clear trend of `jobType` with `salary` as CEO, CFO, and CTO are high 
 
 __6. `major`__
 
-![major](assets/major.png)
+![major](images/major.png)
 | major | mean | count |
 | :---: | :---: | :---: |
 | BIOLOGY | 127.932664 | 58379 |
@@ -133,7 +133,7 @@ Listings with majors like Engineering, Business and Maths have high salaries. Th
 
 __7. `industry`__
 
-![industry](assets/industry.png)
+![industry](images/industry.png)
 | industry | mean | count |
 | :---: | :---: | :---: |
 | AUTO | 109.435222 | 142941 |
@@ -148,13 +148,13 @@ The dataset is also almost uniformly distributed between various industries. Oil
 
 __8. `companyId`__
 
-![company](assets/company_id.png)
+![company](images/company_id.png)
 The above plot shows the median salaries of all the 63 unique companies. Most of the companies have their median salary of about 114k.
 
 ### Correlation Plots
 One important step to understand the association of the features with the target is to estimate correlations. We calculated the correlations of the categorical columns by encoding the mean target values grouped by that particular feature and the corresponding correlation plot looks like-
 
-![correlation_original](assets/corr_heatmap_original.png)
+![correlation_original](images/corr_heatmap_original.png)
 
 It looks like `jobType` has the biggest correlation with the target followed by `degree`. We will actually use this for our baseline model.
 
@@ -180,7 +180,7 @@ Feature engineering is a big part of the machine learning workflow. It can lead 
 
 The corresponding correlation plot looks like this:
 
-![correlation](assets/corr_heatmap.png)
+![correlation](images/corr_heatmap.png)
 
 The following table summarizes the correlation of each feature with target `salary`:
 | feature | correlation |
@@ -312,4 +312,3 @@ The left panel shows the feature importances for LightGBM model whereas the feat
 2. LightGBM: https://lightgbm.readthedocs.io/en/latest/
 3. https://towardsdatascience.com/using-columntransformer-to-combine-data-processing-steps-af383f7d5260
 4. https://towardsdatascience.com/https-medium-com-perlitz-hyper-parameter-optimization-with-optuna-1c32785e7df
-5. A huge inspiration from DSDJ intermediate notebook on the same project.
