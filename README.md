@@ -64,7 +64,7 @@ Visualization part of the data involves the visualizing the trends and summaries
 
 __1. Target variable: `salary`__
 
-![target](assets/salary_distribution.png)
+![target](images/salary_distribution.png)
 
 As we can see, salary is slightly right skewed which should not be surprising since there are only a handful of people with very high salaries in a typical salary distribution. Most of the salaries are located in around the range 85-140 with the median value of about 115. Also, the mean and the median values are almost coinciding meaning the distribution is almost symmetrical.
 
