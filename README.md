@@ -214,31 +214,31 @@ The three estimators listed were then created and their corresponding hyperparam
 
 - Effect on objective (mean squared error) due to various hyperparams:
 
-![parallel_lgb](assets/parallel_coord_lgbr.png)
+![parallel_lgb](images/parallel_coord_lgbr.png)
 
 - Hyperparameter importances:
 
-![hyper_imp_lgb](assets/hyperparam_importances_lgbr.png)
+![hyper_imp_lgb](images/hyperparam_importances_lgbr.png)
 
 2. Random Forest
 
 - Effect on objective (mean squared error) due to various hyperparams:
 
-![parallel_rf](assets/parallel_coord_rf.png)
+![parallel_rf](images/parallel_coord_rf.png)
 
 - Hyperparameter importances:
 
-![hyper_imp_rf](assets/hyperparam_importances_rf.png)
+![hyper_imp_rf](images/hyperparam_importances_rf.png)
 
 3. Ridge Regression
 
 - Effect on objective (mean squared error) due to various hyperparams:
 
-![parallel_ridge](assets/parallel_coord_ridge.png)
+![parallel_ridge](images/parallel_coord_ridge.png)
 
 - Hyperparameter importances:
 
-![hyper_imp_ridge](assets/hyperparam_importances_ridge.png)
+![hyper_imp_ridge](images/hyperparam_importances_ridge.png)
 
 
 ### Test Models
@@ -265,50 +265,3 @@ _Although it doesn't look like much difference between the mean sqaured errors o
 
 ### Selecting the best model
 It is clear from the above table that LightGBM out-performed all the other models, both in terms of the performance as well as the running time. We will use it as our "production" model.
-
-## Running the model (DEPLOY)
-### Automate pipeline
-All the optimized hyperparameters for the best model are saved as a [JSON file](models/best_hyperparams_lgbr.json) with the saved model stored as a binary file in the [models](models/) directory. The predictions made by the best model on the test set are also saved in the [models](models/) directory as a [CSV file](models/predictions.csv).
-
-The code for training the model is located in the [src](src/) directory with file name - [main.py](src/main.py). But we need to install all the requirements needed to run the code first. 
-To install all the requirements, first create a virtual environment using (on macOS and linux systems only):
-
-```bash
-python -m venv <environment_name>
-source <environment_name>/bin/activate
-```
-Once the environment is created and activated, run the following:
-
-```bash
-pip install -r requirements.txt
-```
-
-Now for running the model, we just need to go to the root directory inside the python environment and run:
-
-```bash
-python src/main.py --n_folds 5 --data_dir data --model_dir models --param best_hyperparams_lgbr.json best_hyperparams_rf.json best_hyperparams_ridge.json
-```
-where:
-- `--n_folds`: the number of cross-validation folds
-- `--data_dir`: path to the directory containing all the train and test CSV files
-- `--model_dir`: path to the output directory. It stores all the saved models, optimized hyperparam JSON files and the predictions
-- `--param`: name of all the optimized hyperparameter files for the models used followed by a space between two names.
-
-The hyperparameter tuning file is located [here](src/tuning_hyperparams.py) and can be run by following command (inside the environment):
-
-```bash
-python tune_hyperparams.py
-```
-
-### Deploy solution
-The most important features as far as model performance is concerned are shown in the following plot:
-
-![feat_importance](assets/feat_importances_latest.png)
-
-The left panel shows the feature importances for LightGBM model whereas the feature importances for Random forest is shown in the right panel. For the best performing model (LightGBM) the most important feature is `milesFromMetropolis` followed by `std_salary` which shows the dispersion in the salary grouped by all categorical features in the data. As described earlier, all the feature with suffix `*_salary` in their name introduce data leakage in the data and should be avoided.
-
-## References:
-1. Optuna documentation: https://optuna.readthedocs.io/en/stable/index.html
-2. LightGBM: https://lightgbm.readthedocs.io/en/latest/
-3. https://towardsdatascience.com/using-columntransformer-to-combine-data-processing-steps-af383f7d5260
-4. https://towardsdatascience.com/https-medium-com-perlitz-hyper-parameter-optimization-with-optuna-1c32785e7df
